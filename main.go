@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	manifestlib.InitComboBox()
 	message := manifestlib.Hello("Mike")
 	fmt.Println(message)
 }
