@@ -8,9 +8,7 @@ import (
 )
 
 func main() {
-	manifestlib.InitComboBox()
-	message := manifestlib.Hello("Mike")
-	fmt.Println(message)
+	LoadDataFromJsonFiles()
 
 	//Creating a web server
 	router := gin.Default()
@@ -20,4 +18,28 @@ func main() {
 
 	router.Run("localhost:3000")
 
+}
+
+func LoadDataFromJsonFiles() {
+	// accounts := manifestlib.Accounts{}
+	// accounts.LoadData()
+	// dbInstances := manifestlib.DatabaseInstances{}
+	// dbInstances.LoadData()
+	// databaseManifest := manifestlib.Manifest{}
+	manifestlib.LoadSourceValues()
+	manifestlib.LoadManifest()
+}
+func getFormManifest(c *gin.Context) {
+	formName := c.Param("name")
+	fmt.Println(formName)
+}
+
+func getValues(c *gin.Context) {
+	source := c.Param("source")
+	fmt.Println(source)
+}
+
+func postForm(c *gin.Context) {
+	formName := c.Param("name")
+	fmt.Println(formName)
 }

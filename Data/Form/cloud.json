@@ -1,0 +1,25 @@
+{
+    "components": [
+      {
+        "source": "reason",
+        "label": "Reason",
+        "component_type": "TextField",
+        "placeholder": "Enter your Reason for access",
+        "input_type": "String"
+      },
+      {
+        "source": "accounts",
+        "label": "accounts",
+        "component_type": "MultiComboSelect",
+        "placeholder": "choose multiple accounts",
+        "input_type": "String"
+      },
+      {
+        "source": "userEmail",
+        "label": "user",
+        "component_type": "ComboBox",
+        "placeholder": "choose a user email",
+        "input_type": "String"
+      }
+    ]
+}
