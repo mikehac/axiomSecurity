@@ -14,20 +14,8 @@ type Manifest struct {
 
 var ManifestsMap = make(map[string]Manifest)
 
-type DataLoader interface {
-	loadData()
-}
-
 type SourceValues struct {
 	Values []string `json:"values"`
 }
 
 var SourceValueMap = make(map[string]SourceValues)
-
-type Accounts struct {
-	Values []string `json:"values"`
-}
-
-type DatabaseInstances struct {
-	Values []string `json:"values"`
-}

@@ -3,6 +3,7 @@ package main
 import (
 	"axiomsecurity/manifestlib"
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -21,22 +22,27 @@ func main() {
 }
 
 func LoadDataFromJsonFiles() {
-	// accounts := manifestlib.Accounts{}
-	// accounts.LoadData()
-	// dbInstances := manifestlib.DatabaseInstances{}
-	// dbInstances.LoadData()
-	// databaseManifest := manifestlib.Manifest{}
 	manifestlib.LoadSourceValues()
 	manifestlib.LoadManifest()
 }
 func getFormManifest(c *gin.Context) {
 	formName := c.Param("name")
-	fmt.Println(formName)
+	if currentManifest, ok := manifestlib.ManifestsMap[formName]; ok {
+		c.JSON(http.StatusOK, currentManifest)
+	}
+	c.JSON(http.StatusNoContent, gin.H{
+		"code":    http.StatusNoContent,
+		"message": string("No manifest named '" + formName + "' was found")})
 }
 
 func getValues(c *gin.Context) {
 	source := c.Param("source")
-	fmt.Println(source)
+	if currentSource, responseStatus := manifestlib.SourceValueMap[source]; responseStatus {
+		c.JSON(http.StatusOK, currentSource)
+	}
+	c.JSON(http.StatusNoContent, gin.H{
+		"code":    http.StatusNoContent,
+		"message": string("No source named '" + source + "' was found")})
 }
 
 func postForm(c *gin.Context) {

@@ -13,36 +13,15 @@ func Hello(name string) string {
 	return message
 }
 
-// func (a *Accounts) LoadData() {
-// 	file, err := ioutil.ReadFile("./Data/values/accounts.json")
-// 	if err != nil {
-// 		log.Fatal("Error when opening file: ", err)
-// 	}
-// 	err = json.Unmarshal([]byte(file), &a)
-// 	if err != nil {
-// 		log.Fatal("Error when parsing to the object", err)
-// 	}
-// }
-
-//	func (d *DatabaseInstances) LoadData() {
-//		file, err := ioutil.ReadFile("./Data/values/databaseInstances.json")
-//		if err != nil {
-//			log.Fatal("Error when opening file: ", err)
-//		}
-//		err = json.Unmarshal([]byte(file), &d)
-//		if err != nil {
-//			log.Fatal("Error when parsing to the object", err)
-//		}
-//	}
 func LoadSourceValues() {
-	var s SourceValues
 	items, err := ioutil.ReadDir("./Data/values")
 	if err != nil {
 		log.Fatal("Error when reading the the ManifestFolder", err)
 	}
 	for _, item := range items {
+		var s SourceValues
 		fileName := item.Name()
-		file, err := ioutil.ReadFile("./Data/Form/" + fileName)
+		file, err := ioutil.ReadFile("./Data/values/" + fileName)
 		if err != nil {
 			log.Fatal("Error when opening file: ", err)
 		}
@@ -56,12 +35,12 @@ func LoadSourceValues() {
 }
 
 func LoadManifest() {
-	var m Manifest
 	items, err := ioutil.ReadDir("./Data/Form")
 	if err != nil {
 		log.Fatal("Error when reading the the ManifestFolder", err)
 	}
 	for _, item := range items {
+		var m Manifest
 		fileName := item.Name()
 		file, err := ioutil.ReadFile("./Data/Form/" + fileName)
 		if err != nil {
