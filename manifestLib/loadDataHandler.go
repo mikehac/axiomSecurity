@@ -2,21 +2,20 @@ package manifestlib
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"log"
 	"os"
 	"strings"
 )
 
 func LoadSourceValues() {
-	items, err := ioutil.ReadDir("./Data/values")
+	items, err := os.ReadDir("./Data/values")
 	if err != nil {
 		log.Fatal("Error when reading the the ManifestFolder", err)
 	}
 	for _, item := range items {
 		var s SourceValues
 		fileName := item.Name()
-		file, err := ioutil.ReadFile("./Data/values/" + fileName)
+		file, err := os.ReadFile("./Data/values/" + fileName)
 		if err != nil {
 			log.Fatal("Error when opening file: ", err)
 		}

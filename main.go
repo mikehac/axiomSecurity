@@ -3,6 +3,7 @@ package main
 import (
 	"axiomsecurity/manifestlib"
 	"fmt"
+	"io"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -50,5 +51,14 @@ func getValues(c *gin.Context) {
 
 func postForm(c *gin.Context) {
 	formName := c.Param("name")
+	formDataToValidate, err := io.ReadAll(c.Request.Body)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":    http.StatusInternalServerError,
+			"message": string("Error:" + err.Error())})
+	}
+
+	manifestlib.ValidateTypeAndValues(formDataToValidate)
+	fmt.Println(string(formDataToValidate))
 	fmt.Println(formName)
 }
