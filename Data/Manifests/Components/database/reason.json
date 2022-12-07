@@ -1,0 +1,7 @@
+{
+    "source": "reason",
+    "label": "Reason",
+    "component_type": "TextField",
+    "placeholder": "Enter your Reason for access",
+    "input_type": "String"
+}

@@ -1,0 +1,7 @@
+{
+    "source": "accounts",
+    "label": "accounts",
+    "component_type": "MultiComboSelect",
+    "placeholder": "choose multiple accounts",
+    "input_type": "String"
+}

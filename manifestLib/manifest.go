@@ -2,16 +2,11 @@ package manifestlib
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 	"strings"
 )
-
-func Hello(name string) string {
-	message := fmt.Sprintf("Hi, %v. Welcome!", name)
-	return message
-}
 
 func LoadSourceValues() {
 	items, err := ioutil.ReadDir("./Data/values")
@@ -34,23 +29,31 @@ func LoadSourceValues() {
 	}
 }
 
-func LoadManifest() {
-	items, err := ioutil.ReadDir("./Data/Form")
+func BuildManifests() {
+	manifestsFolders, err := os.ReadDir("./Data/Manifests/Components")
 	if err != nil {
 		log.Fatal("Error when reading the the ManifestFolder", err)
 	}
-	for _, item := range items {
+	for _, mf := range manifestsFolders {
 		var m Manifest
-		fileName := item.Name()
-		file, err := ioutil.ReadFile("./Data/Form/" + fileName)
+		componetnFolderName := mf.Name()
+		currentComponents, err := os.ReadDir("./Data/Manifests/Components/" + componetnFolderName)
 		if err != nil {
-			log.Fatal("Error when opening file: ", err)
+			log.Fatal("Error when reading Component's folder:", err)
 		}
-		err = json.Unmarshal([]byte(file), &m)
-		if err != nil {
-			log.Fatal("Error when parsing to the object", err)
+		for _, component := range currentComponents {
+			var c Component
+			fileName := component.Name()
+			file, err := os.ReadFile("./Data/Manifests/Components/" + componetnFolderName + "/" + fileName)
+			if err != nil {
+				log.Fatal("Error when opening file: ", err)
+			}
+			err = json.Unmarshal([]byte(file), &c)
+			if err != nil {
+				log.Fatal("Error when parsing to the object", err)
+			}
+			m.Components = append(m.Components, c)
 		}
-		fileNameNoExtantion := strings.Split(fileName, ".")[0]
-		ManifestsMap[fileNameNoExtantion] = m
+		ManifestsMap[componetnFolderName] = m
 	}
 }

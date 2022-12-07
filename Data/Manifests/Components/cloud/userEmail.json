@@ -1,0 +1,7 @@
+{
+    "source": "userEmail",
+    "label": "user",
+    "component_type": "ComboBox",
+    "placeholder": "choose a user email",
+    "input_type": "String"
+}

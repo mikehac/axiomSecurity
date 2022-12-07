@@ -1,0 +1,7 @@
+{
+  "source": "databaseInstances",
+  "label": "Database Instances",
+  "component_type": "ComboBox",
+  "placeholder": "choose database",
+  "input_type": "String"
+}

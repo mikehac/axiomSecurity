@@ -1,0 +1,7 @@
+{
+    "source": "databaseRoles",
+    "label": "Database Role",
+    "component_type": "ComboBox",
+    "placeholder": "choose a role",
+    "input_type": "String"
+}

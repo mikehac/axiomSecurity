@@ -12,18 +12,21 @@ func main() {
 	LoadDataFromJsonFiles()
 
 	//Creating a web server
+	initRoutes()
+}
+
+func initRoutes() {
 	router := gin.Default()
 	router.GET("/form/:name", getFormManifest)
 	router.GET("/values/:source", getValues)
 	router.POST("/form/:name", postForm)
 
 	router.Run("localhost:3000")
-
 }
 
 func LoadDataFromJsonFiles() {
 	manifestlib.LoadSourceValues()
-	manifestlib.LoadManifest()
+	manifestlib.BuildManifests()
 }
 func getFormManifest(c *gin.Context) {
 	formName := c.Param("name")
