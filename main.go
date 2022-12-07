@@ -58,7 +58,7 @@ func postForm(c *gin.Context) {
 			"message": string("Error:" + err.Error())})
 	}
 
-	manifestlib.ValidateTypeAndValues(formDataToValidate)
+	manifestlib.ValidateTypeAndValues(formDataToValidate, formName)
 	fmt.Println(string(formDataToValidate))
 	fmt.Println(formName)
 }
