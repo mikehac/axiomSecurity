@@ -1,5 +1,5 @@
 {
-    "source": "userEmail",
+    "source": "user",
     "label": "user",
     "component_type": "ComboBox",
     "placeholder": "choose a user email",
