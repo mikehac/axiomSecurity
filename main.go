@@ -2,7 +2,6 @@ package main
 
 import (
 	"axiomsecurity/manifestlib"
-	"fmt"
 	"io"
 	"net/http"
 
@@ -58,7 +57,9 @@ func postForm(c *gin.Context) {
 			"message": string("Error:" + err.Error())})
 	}
 
-	manifestlib.ValidateTypeAndValues(formDataToValidate, formName)
-	fmt.Println(string(formDataToValidate))
-	fmt.Println(formName)
+	if manifestlib.ValidateTypeAndValues(formDataToValidate, formName) {
+		c.JSON(http.StatusOK, "success")
+	} else {
+		c.JSON(http.StatusOK, "fail")
+	}
 }
