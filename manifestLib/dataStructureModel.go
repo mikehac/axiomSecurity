@@ -1,11 +1,12 @@
 package manifestlib
 
 type Component struct {
-	Source        string `json:"source"`
-	Label         string `json:"label"`
-	ComponentType string `json:"component_type"`
-	PlaceHolder   string `json:"placeHolder"`
-	InputType     string `json:"input_type"`
+	Source             string `json:"souce"`
+	Label              string `json:"lael"`
+	ComponentType      string `json:"component_type"`
+	PlaceHolder        string `json:"placeHolder"`
+	InputType          string `json:"input_tpe"`
+	MultiValuesAllowed bool   `json:"multiValues_Allowed"`
 }
 
 type Manifest struct {
