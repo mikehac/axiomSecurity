@@ -46,20 +46,19 @@ func (c *CloudForm) valuesAreValid() bool {
 	return false
 }
 func ValidateTypeAndValues(sorceJsonStr []byte, manifestName string) bool {
-	var d DatabaseForm
-	var c CloudForm
+	var v Validator
 
+	fmt.Println(v)
 	switch manifestName {
 	case "database":
-		if d.isValidType(sorceJsonStr) && d.valuesAreValid() {
-			fmt.Println("this is database manifest")
-			return true
-		}
+		v = new(DatabaseForm)
 	case "cloud":
-		if c.isValidType(sorceJsonStr) && c.valuesAreValid() {
-			fmt.Println("this is cloud manifest")
-			return true
-		}
+		v = new(CloudForm)
+	}
+
+	if v.isValidType(sorceJsonStr) && v.valuesAreValid() {
+		// fmt.Println("this is database manifest")
+		return true
 	}
 
 	return false

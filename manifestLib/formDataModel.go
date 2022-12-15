@@ -14,5 +14,5 @@ type CloudForm struct {
 
 type Validator interface {
 	isValidType(sourceJsonStr []byte) bool
-	valuesAreValid(manifestName string) bool
+	valuesAreValid() bool
 }
